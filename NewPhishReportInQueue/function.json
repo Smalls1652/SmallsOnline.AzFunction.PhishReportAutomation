@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "name": "QueueItem",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "phish-reports",
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}
