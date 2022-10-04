@@ -5,7 +5,6 @@ namespace SmallsOnline.AzFunctions.PhishReportAutomation.Models.MsGraph;
 /// </summary>
 public class EmailThreatSubmission : IThreatSubmission, IEmailThreatSubmission
 {
-    private readonly string _odataType = "#microsoft.graph.security.emailThreatSubmission";
     public EmailThreatSubmission()
     {}
 
@@ -13,10 +12,7 @@ public class EmailThreatSubmission : IThreatSubmission, IEmailThreatSubmission
     /// The OData type of the item in MS Graph.
     /// </summary>
     [JsonPropertyName("@odata.type")]
-    public string OdataType
-    {
-        get => _odataType;
-    }
+    public string? OdataType { get; set; }
 
     /// <summary>
     /// The ID of the submitted email message.

@@ -2,7 +2,7 @@ namespace SmallsOnline.AzFunctions.PhishReportAutomation.Models.MsGraph;
 
 public interface IEmailThreatSubmission
 {
-    string OdataType { get; }
+    string? OdataType { get; set; }
     string? InternetMessageId { get; set; }
     DateTimeOffset? ReceivedDateTime { get; set; }
     string? OriginalCategory { get; set; }
