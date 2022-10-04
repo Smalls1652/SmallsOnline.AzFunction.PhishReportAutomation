@@ -109,16 +109,25 @@ namespace SmallsOnline.AzFunctions.PhishReportAutomation.Functions
 
                     EmailThreatSubmission submissionPostItem = new()
                     {
+                        OdataType = "#microsoft.graph.security.emailUrlThreatSubmission",
                         Category = "phishing",
                         RecipientEmailAddress = user.UserPrincipalName,
                         MessageUrl = $"https://graph.microsoft.com/beta/users/{user.Id}/messages/{messageItem.Id}"
                     };
 
+                    string submissionPostJson = JsonSerializer.Serialize(
+                        value: submissionPostItem,
+                        options: new()
+                        {
+                            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                        }
+                    );
+
                     try
                     {
                         await _graphClientService.GraphClient.SendApiCallAsync(
                             endpoint: "security/threatSubmission/emailThreats",
-                            apiPostBody: JsonSerializer.Serialize(submissionPostItem),
+                            apiPostBody: submissionPostJson,
                             httpMethod: HttpMethod.Post
                         );
                     }
