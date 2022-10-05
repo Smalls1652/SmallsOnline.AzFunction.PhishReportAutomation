@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+name: Build
+on:
+  push:
+    paths-ignore:
+      - "README.md"
+      - "sample.settings.json"
+      - ".vscode/"
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Setup dotnet SDK
+        uses: actions/setup-dotnet@v2.1.1
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Run 'dotnet restore'
+        run: dotnet restore ./SmallsOnline.AzFunction.PhishReportAutomation.csproj
+
+      - name: Run 'dotnet build'
+        run: dotnet build ./SmallsOnline.AzFunction.PhishReportAutomation.csproj
