@@ -80,6 +80,9 @@ public class EmailThreatSubmission : IThreatSubmission, IEmailThreatSubmission
     [JsonPropertyName("sender")]
     public string? Sender { get; set; }
 
+    /// <summary>
+    /// The url of the message to be submitted.
+    /// </summary>
     [JsonPropertyName("messageUrl")]
     public string? MessageUrl { get; set; }
 }

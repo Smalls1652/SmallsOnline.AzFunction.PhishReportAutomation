@@ -38,6 +38,11 @@ public class UserMessage : IUserMessage
     [JsonPropertyName("toRecipients")]
     public List<Recipient> ToRecipients { get; set; } = null!;
 
+    /// <summary>
+    /// Check to see if an email address is in the ToRecipients property.
+    /// </summary>
+    /// <param name="emailAddress">The email address of a recipient.</param>
+    /// <returns>A boolean response depending on if the supplied email address is in ToRecipients.</returns>
     public bool IsRecipient(string emailAddress)
     {
         return ToRecipients.Exists((recipient) => recipient.EmailAddress.Address == emailAddress);
